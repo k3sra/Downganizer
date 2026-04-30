@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <!--
+      .NET 8 LTS = supported through Nov 2026. Stable runtime for a 24/7 service.
+      OutputType Exe + Worker SDK is the canonical Windows Service shape.
+    -->
+    <!-- net8.0-windows declares this assembly is Windows-only, which removes
+         spurious CA1416 platform-availability warnings for EventLog APIs. -->
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Downganizer</RootNamespace>
+    <AssemblyName>Downganizer</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <LangVersion>latest</LangVersion>
+
+    <!-- Service metadata, surfaced in the SCM and Add/Remove Programs (when published) -->
+    <Authors>Downganizer</Authors>
+    <Product>Downganizer Auto-Organization Service</Product>
+    <Description>Robust 24/7 background service for automatic Downloads folder organization.</Description>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Hosting + WindowsServices = generic host wired up to the Service Control Manager.
+      EventLog provider gives us a destination in the Windows Application log
+      so the SCM and Event Viewer can both see what we're doing.
+    -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- appsettings.json holds hosting-side config (paths, log levels). -->
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

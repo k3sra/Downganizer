@@ -1,0 +1,49 @@
+# =============================================================================
+# Downganizer .gitignore
+# =============================================================================
+
+# ---- .NET build outputs ----
+bin/
+obj/
+out/
+publish/
+*.user
+*.suo
+*.userprefs
+*.lock.json
+*.cache
+*.pidb
+*.dll.config
+project.lock.json
+project.fragment.lock.json
+
+# Visual Studio / Rider / VS Code workspace cruft
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- Runtime state (must NEVER be committed - it's per-machine) ----
+data/
+logs/
+*.log
+*.log.gz
+
+# ---- OS junk ----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ---- Secrets ----
+*.env
+*.env.local
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+
+# ---- Local tooling ----
+.claude/
