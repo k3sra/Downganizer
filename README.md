@@ -69,7 +69,7 @@ A bulletproof, 24/7 Windows Service that quietly organizes everything that lands
 
 ```powershell
 # 1. clone
-git clone https://github.com/YOUR-USERNAME/Downganizer.git C:\Downganizer
+git clone https://github.com/k3sra/Downganizer.git C:\Downganizer
 
 # 2. install (builds + registers + starts the service, all in one)
 cd C:\Downganizer\scripts
